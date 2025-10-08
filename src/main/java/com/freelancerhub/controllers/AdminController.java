@@ -17,7 +17,7 @@ import com.freelancerhub.services.CategoryService;
 import com.freelancerhub.services.TagService;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api")
 public class AdminController {
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class AdminController {
 	}
 	
 	
-	@PostMapping("/add-category")
+	@PostMapping("/admin/add-category")
 	public ResponseEntity<?> addCategory(@RequestBody Category category){
 		
 		try {
@@ -49,7 +49,7 @@ public class AdminController {
 	
 	// Tags
 	
-	@PostMapping("/add-tag")
+	@PostMapping("/admin/add-tag")
 	public ResponseEntity<Tag> addTag(@RequestBody Tag tag){
 		
 		try {
@@ -64,7 +64,6 @@ public class AdminController {
 	@GetMapping("/tags")
 	public ResponseEntity<List<Tag>> getTags(){
 		try {
-			System.out.println("I am getting called");
 			return ResponseEntity.ok(tagService.getAllTags());
 		}catch(Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(List.of(new Tag()));
